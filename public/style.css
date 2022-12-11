@@ -1,0 +1,39 @@
+/* pallette  9B1D20 3D2B3D 635D5C CBEFB6 D0FFCE*/
+
+
+
+body{
+    background-color: #D0FFCE;
+}
+#navbar {
+    padding-inline-start: 20px;
+    display:flex;
+    flex-direction: row;
+}
+
+.navbar-items {
+    margin-right:40px;
+    list-style: none;
+    color: #635D5C;
+    font-size: 25px;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+#title-section{
+    padding-inline-start: 20px;
+    width:100%  ;
+    display:flex;
+    background-color: #CBEFB6;
+    font-family: sans-serif;
+}
+
+#login-form{
+ display:flex;
+ flex-direction: column;
+}
+
+.form-item{
+    width:40%
+}
+
