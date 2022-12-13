@@ -34,6 +34,24 @@ body{
 }
 
 .form-item{
-    width:40%
+    width:20%
 }
 
+#submit-button{
+    width:20.5%;
+}
+
+.links{
+    color:darkblue;
+    text-decoration: underline;
+}
+
+#new-post-btn{
+    position: fixed;
+    bottom: 5px;
+    left: 5px;
+}   
+
+a{
+    text-decoration: none;
+}
