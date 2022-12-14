@@ -1,11 +1,9 @@
-// Here is where we set up our Post model, for when we are ready to connect to a database in future activities.
-
-const { Model, DataTypes } = require('sequelize');
+const { Model , DataTypes } = require("sequelize");
 const sequelize = require('../config/connection');
 
-class Post extends Model {}
+class Blogpost extends Model {}
 
-Post.init(
+Blogpost.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -30,4 +28,4 @@ Post.init(
   }
 );
 
-module.exports = Post;
+module.exports = Blogpost;
