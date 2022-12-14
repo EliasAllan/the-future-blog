@@ -1,10 +1,21 @@
-
+const { Module , DataTypes } = require("sequelize");
 const router = require('express').Router();
 const path = require('path');
-const { Blogpost } = require("../models")
+const { Blogpost } = require("../models/post.js")
+
+
+const posts = [
+  {
+    title: 'post title',
+    description: 'post description',
+  }
+];
+
 // Get homepage 
 router.get('/', async (req, res) => {
-    res.render('homepage');
+    console.log(req)
+    // console.log(res)
+    res.render('homepage', posts[req.params.num - 1 ]);
   });
 
 // Get login page
@@ -29,7 +40,7 @@ router.get('/newpost', async (req,res) => {
 
 // Post newpost
 router.post('/', (req, res) => {
-  // create a new category
+  // create a new post
 
   Blogpost.create({
     id: req.body.id,
