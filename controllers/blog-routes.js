@@ -1,7 +1,7 @@
 const { Module , DataTypes } = require("sequelize");
 const router = require('express').Router();
 const path = require('path');
-const { Blogpost } = require("../models/post.js")
+const  Blogpost  = require("../models/post.js")
 
 
 const posts = [
@@ -13,9 +13,9 @@ const posts = [
 
 // Get homepage 
 router.get('/', async (req, res) => {
-    console.log(req)
+    // console.log(req)
     // console.log(res)
-    res.render('homepage', posts[req.params.num - 1 ]);
+    res.render('homepage');
   });
 
 // Get login page
@@ -41,7 +41,7 @@ router.get('/newpost', async (req,res) => {
 // Post newpost
 router.post('/', (req, res) => {
   // create a new post
-
+console.log(req.body)
   Blogpost.create({
     id: req.body.id,
     title: req.body.title,

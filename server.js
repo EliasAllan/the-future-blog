@@ -15,6 +15,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Sets up the routes
 app.use(require('./controllers/blog-routes'));
+app.use(require('./controllers/api/postRoutes'));
 
 //Starts the server to begin listening
 app.listen(PORT, () => {
