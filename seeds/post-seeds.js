@@ -3,23 +3,30 @@ const  Post  = require('../models/Post');
 const postData = [
   {
     title: 'Shirts',
-    content:'asdasdas'
+    content:'asdasdas',
+    user_id: 1
   },
   {
     title: 'Shorts',
-    content:'asdasdas'
+    content:'asdasdas',
+    user_id: 2
   },
   {
     title: 'Music',
-    content:'asdasdas'
+    content:'asdasdas',
+    user_id: 2,
   },
   {
     title: 'Hats',
-    content:'asdasdas'
+    content:'asdasdas',
+    user_id: 2,
+
   },
   {
     title: 'Shoes',
-    content:'asdasdas'
+    content:'asdasdas',
+    user_id: 1,
+
   },
 ];
 

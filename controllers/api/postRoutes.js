@@ -1,7 +1,7 @@
-const { Module , DataTypes } = require("sequelize");
 const router = require('express').Router();
+const { Module , DataTypes } = require("sequelize");
 const path = require('path');
-const  Post  = require("../../models/Post")
+const  {Post}  = require("../../models/")
 
 
 const posts = [

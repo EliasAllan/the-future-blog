@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Blogpost = require("../models/post.js");
+const {Post} = require("../models/");
 // const withAuth = require('../utils/auth');
 
 const posts = [
@@ -12,31 +12,34 @@ const posts = [
 // Get homepage
 router.get("/", async (req, res) => {
   try {
-    // Get all projects and JOIN with user data
-    const blogPostData = await Blogpost.findAll({
-      include: [
-        {
-          model: Blogpost,
-          attributes: ["title"],
-        },
-      ],
+  //   // Get all projects and JOIN with user data
+    const postData = await Post.findAll({
+      // include: [
+      //   {
+      //     model: Blogpost,
+      //     attributes: ["title"],
+      //   },
+      // ],
     });
+    console.log(postData)
 
     // Serialize data so the template can read it
-    const blogPosts = blogPostData.map((blogPostData) => blogPostData.get({ plain: true }));
-
+    const blogPosts = postData.map((post) => post.get({ plain: true }));
+    console.log(blogPosts)
     // Pass serialized data and session flag into template
     res.render("homepage", {
-      blogPosts
+      blogPosts,
       // logged_in: req.session.logged_in,
     });
   } catch (err) {
+    console.log(err)
     res.status(500).json(err);
   }
 });
 
 // Get login page
 router.get("/login", async (req, res) => {
+  // if they're logged in, then redirect them to the dashboard
   res.render("login");
 });
 
@@ -59,7 +62,7 @@ router.get("/newpost", async (req, res) => {
 router.post("/", (req, res) => {
   // create a new post
   console.log(req.body);
-  Blogpost.create({
+  Post.create({
     id: req.body.id,
     title: req.body.title,
     content: req.body.content,
