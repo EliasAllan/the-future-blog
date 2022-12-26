@@ -2,13 +2,6 @@ const router = require("express").Router();
 const Post = require("../models/Post");
 // const withAuth = require('../utils/auth');
 
-const posts = [
-  {
-    title: "post title",
-    description: "post description",
-  },
-];
-
 // Get homepage
 router.get("/", async (req, res) => {
   try {
@@ -21,7 +14,7 @@ router.get("/", async (req, res) => {
       //   },
       // ],
     });
-    console.log(postData)
+    // console.log(postData)
 
     // Serialize data so the template can read it
     const blogPosts = postData.map((post) => post.get({ plain: true }));
@@ -58,22 +51,16 @@ router.get("/newpost", async (req, res) => {
   res.render("newpost");
 });
 
-// Post newpost
-router.post("/", (req, res) => {
-  // create a new post
-  console.log(req.body);
-  Post.create({
-    id: req.body.id,
-    title: req.body.title,
-    content: req.body.content,
-  })
-
-    .then((newBlogpost) => {
-      res.json(newBlogpost);
-    })
-    .catch((err) => {
-      res.json(err);
+router.get("/posts/:singlePost", async(req,res) => {
+  console.log("Pinging single post")
+  const postData = await Post.findByPk(parseInt(req.params.singlePost))
+  const post = postData.get({ plain: true })
+  console.log(post)
+      res.render("post", {
+      ...post,
+      // logged_in: req.session.logged_in,
     });
-});
+
+})
 
 module.exports = router;

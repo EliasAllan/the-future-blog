@@ -12,8 +12,8 @@ const postData = [
     user_id: 2
   },
   {
-    title: 'Why am I doing this ?',
-    content:'I like challenges apparently',
+    title: 'Late night coding',
+    content:'Coding is better at night time',
     user_id: 2,
   },
   {
