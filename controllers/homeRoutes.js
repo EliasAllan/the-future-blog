@@ -21,6 +21,7 @@ router.get("/", async (req, res) => {
     console.log(blogPosts)
     // Pass serialized data and session flag into template
     res.render("homepage", {
+      logged_in: req.session.logged_in,
       blogPosts,
       // logged_in: req.session.logged_in,
     });
@@ -43,7 +44,9 @@ router.get("/signup", async (req, res) => {
 
 // Get Dashboard
 router.get("/dashboard", async (req, res) => {
-  res.render("dashboard");
+  res.render("dashboard",{
+    logged_in: req.session.logged_in
+  });
 });
 
 // Get newpost

@@ -18,12 +18,15 @@
                 <a href = "/dashboard" class = "navbar-items">
                     Dashboard
                 </a>
+                {{#if logged_in}}
+                <a href = "" id="logout" class = "navbar-items">
+                    Logout
+                </a>
+                {{else}}
                 <a href = "/login" class = "navbar-items">
                     Login
                 </a>
-                <a href = "/logout" class = "navbar-items">
-                    Logout
-                </a>
+                {{/if}}
             </ul>
         </nav>
         <section id="title-section">
@@ -35,5 +38,8 @@
     <section>
         {{{ body }}}
     </section>
+    {{#if logged_in}}
+    <script src="/js/logout.js"></script>
+    {{/if}}
 </body>
 </html>
