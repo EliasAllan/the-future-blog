@@ -1,6 +1,15 @@
 console.log("here for new posts")
 
+
+const title = document.querySelector('#title').value.trim();
+const content = document.querySelector('#content').value.trim();
 //capture the data from the form
+
+const response = await fetch('/api/posts', {
+    method: 'POST',
+    body:JSON.stringify({ title, content}),
+    headers: { 'Content-Type': 'application/json' },
+});
 
 fetch("/api/posts",{
     method: "POST",
@@ -17,7 +26,8 @@ fetch("/api/posts",{
             return response.json()
         }
 
-    }).then(data=>{
-        console.log(data)
-        document.location.replace(`/posts/${data.id}`)
     })
+    // .then(data=>{
+    //     console.log(data)
+    //     document.location.replace(`/posts/${data.id}`)
+    // })
