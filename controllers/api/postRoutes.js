@@ -8,14 +8,17 @@ const  {Post}  = require("../../models/")
 router.post("/", (req, res) => {
   console.log("Pinged create a new post")
   try {  
-    console.log(req.session);
+  console.log(req.session);
   console.log(req.body);
+    const name = req.session.name
     const newPost = Post.create({
       ...req.body,
       user_id: req.session.user_id,
-    })
-  
-    res.status(200).json(newPost);
+      name: name,
+    });
+
+    res.status(200).json(newPost); 
+
   } catch (err) {
     res.status(400).json(err);
   }
