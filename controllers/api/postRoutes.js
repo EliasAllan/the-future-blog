@@ -6,16 +6,34 @@ const  {Post}  = require("../../models/")
 
 // Post newpost
 router.post("/", (req, res) => {
-console.log("Pinged create a new post")  
-console.log(req.body);
-  Post.create(req.body)
-    .then((newBlogpost) => {
-      res.json(newBlogpost);
+  console.log("Pinged create a new post")
+  try {  
+    console.log(req.session);
+  console.log(req.body);
+    const newPost = Post.create({
+      ...req.body,
+      user_id: req.session.user_id,
     })
-    .catch((err) => {
-      res.json(err);
-    });
-});
+  
+    res.status(200).json(newPost);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+  });
+// router.post("/", (req, res) => {
+// console.log("Pinged create a new post")  
+// console.log(req.body);
+//   Post.create({
+//     ...req.body,
+//     user_id: req.session.user_id
+//   })
+//     .then((newBlogpost) => {
+//       res.json(newBlogpost);
+//     })
+//     .catch((err) => {
+//       res.json(err);
+//     });
+// });
 
 // // Get posts
 // router.get('/api/posts', async (req, res) => {

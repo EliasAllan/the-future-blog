@@ -65,3 +65,18 @@ body{
 a{
     text-decoration: none;
 }
+
+.row-mb-4{
+    border-style: solid;
+    border-color: black;
+    margin: 15px;
+}
+
+.titlebox{
+    background-color: #635D5C;
+    margin: 0px;
+}
+
+a:visited{
+    color: #2e0102
+}

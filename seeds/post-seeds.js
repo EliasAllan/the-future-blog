@@ -3,12 +3,12 @@ const  Post  = require('../models/Post');
 const postData = [
   {
     title: 'Coding is hard',
-    content:'kill me',
+    content:'I can do it tho',
     user_id: 1
   },
   {
     title: 'What is sleep',
-    content:'This better make lots of $$$',
+    content:'I feel fine',
     user_id: 2
   },
   {

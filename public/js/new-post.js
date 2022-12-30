@@ -1,33 +1,56 @@
 console.log("here for new posts")
-
-
+const newPostHandler = async (event) => {
+    event.preventDefault();
+  
 const title = document.querySelector('#title').value.trim();
 const content = document.querySelector('#content').value.trim();
 //capture the data from the form
 
-const response = await fetch('/api/posts', {
-    method: 'POST',
-    body:JSON.stringify({ title, content}),
-    headers: { 'Content-Type': 'application/json' },
-});
+if (title && content) {
+    const response = await fetch(`/api/posts`, {
+      method: 'POST',
+      body: JSON.stringify({title , content}),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
-fetch("/api/posts",{
-    method: "POST",
-    body: JSON.stringify({
-        title: "Test Title with Allan pt3",
-        content: "part 10000",
-        userId: 1
-    }),
-    headers: {
-        "Content-type": "application/json; charset=UTF-8"
-    }}).then(response => {
-        console.log(response)
-        if(response.ok){
-            return response.json()
-        }
+    if (response.ok) {
+      document.location.replace('/');
+    } else {
+      alert('Failed to create post');
+    }
+  }
+};
 
-    })
-    // .then(data=>{
-    //     console.log(data)
-    //     document.location.replace(`/posts/${data.id}`)
-    // })
+document
+  .querySelector('#post-form')
+  .addEventListener('submit', newPostHandler);
+
+// const response = await fetch('/api/posts', {
+//     method: 'POST',
+//     body:JSON.stringify({ title, content}),
+//     headers: { 'Content-Type': 'application/json' },
+// });
+
+// fetch("/api/posts",{
+//     method: "POST",
+//     body: JSON.stringify({
+//         title: title,
+//         content: content,
+//         userId: 1
+//     }),
+//     headers: {
+//         "Content-type": "application/json; charset=UTF-8"
+//     }}).then(response => {
+//         console.log(response)
+//         if(response.ok){
+//             return response.json()
+//         }
+
+//     })
+//     .then(data=>{
+//         console.log(data)
+//         // document.location.replace(`/posts/${data.id}`)
+//     })
+
