@@ -80,3 +80,8 @@ a{
 a:visited{
     color: #2e0102
 }
+
+.username {
+    font-size: 20px;
+    color: #8f4419;
+}

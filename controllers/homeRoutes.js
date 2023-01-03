@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Post , User} = require("../models");
+const { Post , User, Comment} = require("../models");
 // const withAuth = require('../utils/auth');
 
 // Get homepage
@@ -56,14 +56,29 @@ router.get("/newpost", async (req, res) => {
 
 router.get("/posts/:singlePost", async(req,res) => {
   console.log("Pinging single post")
-  const postData = await Post.findByPk(parseInt(req.params.singlePost))
-  const post = postData.get({ plain: true })
+  try{
+  const postData = await Post.findByPk(req.params.singlePost,{
+    include: [
+      {
+        model: User,
+        attributes: ['name'],
+      },
+      {
+        model: Comment,
+      }
+    ],
+  })
+  const post = postData.get({ plain: true });
   console.log(post)
       res.render("post", {
       ...post,
       // logged_in: req.session.logged_in,
     });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
-})
+
 
 module.exports = router;

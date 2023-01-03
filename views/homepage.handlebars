@@ -1,4 +1,5 @@
 <!-- Loop over each object in the projects array -->
+<link rel="stylesheet" href="../public/css/style.css">
 {{#each blogPosts as |post| }}
 <div class="row-mb-4">
   <div class="col-md-5">
@@ -10,7 +11,7 @@
       <a href="/posts/{{post.id}}">{{post.content}}</a>
     </h3>
     <h4>
-      <p>Created by {{post.user.name}} on {{createdAt}}</p>
+      <p>Created by <span class="username">{{post.user.name}}</span> on {{createdAt}}</p>
     </h4>
   </div>
 </div>
