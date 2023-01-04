@@ -56,13 +56,14 @@ router.get("/newpost", async (req, res) => {
 
 router.get("/posts/:singlePost", async(req,res) => {
   console.log("Pinging single post")
+  console.log("------------------------------###########" + req.session.name)
   const name = req.session.name
   try{
   const postData = await Post.findByPk(req.params.singlePost,{
-    username: name,
     include: [
       {
         model: User,
+        attributes: ['name']
       },
       {
         model: Comment,
