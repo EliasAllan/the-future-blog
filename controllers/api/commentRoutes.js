@@ -13,6 +13,7 @@ router.post("/", (req, res) => {
     const newComment = Comment.create({
       ...req.body,
       user_id: req.session.user_id,
+      name: req.session.name,
     });
 
     res.status(200).json(newComment); 

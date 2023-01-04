@@ -56,8 +56,10 @@ router.get("/newpost", async (req, res) => {
 
 router.get("/posts/:singlePost", async(req,res) => {
   console.log("Pinging single post")
+  const name = req.session.name
   try{
   const postData = await Post.findByPk(req.params.singlePost,{
+    username: name,
     include: [
       {
         model: User,
@@ -69,6 +71,14 @@ router.get("/posts/:singlePost", async(req,res) => {
   })
   const post = postData.get({ plain: true });
 
+  // console.log(
+  //   {
+  //     post, 
+  //     logged_in: req.session.logged_in ,
+  //     name: req.session.name
+  //   }, 
+  //   null, 2);
+    
   console.log(post)
 
       res.render("post", {

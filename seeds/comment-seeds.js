@@ -2,10 +2,9 @@ const  Comment  = require('../models/Comment');
 
 const commentData = [
   {
-    comment_content:'yes you can',
+    comment_content:'great presents this year',
     post_id: 1,
-    user_id: 1,
-    user_name:"allan"
+    user_id: 3,
   },
 ];
 

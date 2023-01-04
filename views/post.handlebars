@@ -5,6 +5,8 @@
 <button id="submit-comment">Submit</button>
 
 {{#each comments as |comment|}}
+<div id="comment-box">
 <h4>{{comment_content}}</h4>
-<h5>Created by {{user.name}} at {{createdAt}}</h5>
+<h5>Created by {{name}} at {{createdAt}}</h5>
+</div>
 {{/each}}
