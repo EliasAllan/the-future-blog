@@ -61,7 +61,6 @@ router.get("/posts/:singlePost", async(req,res) => {
     include: [
       {
         model: User,
-        attributes: ['name'],
       },
       {
         model: Comment,
@@ -69,7 +68,9 @@ router.get("/posts/:singlePost", async(req,res) => {
     ],
   })
   const post = postData.get({ plain: true });
+
   console.log(post)
+
       res.render("post", {
       ...post,
       // logged_in: req.session.logged_in,
