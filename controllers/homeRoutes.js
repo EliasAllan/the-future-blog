@@ -67,10 +67,20 @@ router.get("/posts/:singlePost", async(req,res) => {
       },
       {
         model: Comment,
+        include:[
+          {
+            model:User,
+          }
+        ]
       }
+      
     ],
   })
-  const post = postData.get({ plain: true });
+  let post = postData.get({ plain: true });
+    post.comments = post.comments.map(comment => {
+      comment.user_name = comment.user.name
+      return comment
+    })
 
   // console.log(
   //   {
@@ -81,6 +91,11 @@ router.get("/posts/:singlePost", async(req,res) => {
   //   null, 2);
     
   console.log(post)
+  console.log(post.comments[0].user_id)
+
+  console.log(JSON.stringify(post, null, 2));
+
+ 
 
       res.render("post", {
       ...post,

@@ -7,7 +7,7 @@ const comment = document.querySelector('#comment').value.trim();
 //capture the data from the form
 
 if (comment) {
-    const response = await fetch(`/api/posts`, {
+    const response = await fetch(`api/comment`, {
       method: 'POST',
       body: JSON.stringify({content}),
       headers: {

@@ -1,12 +1,12 @@
 <h1>{{title}}</h1>
 <h1>{{content}}</h1>
 <p>Created by <span class="username">{{user.name}}</span> on {{createdAt}}</p>
-<textarea id="comment">Comment</textarea></br>
+<textarea placeholder="comment" id="comment"></textarea></br>
 <button id="submit-comment">Submit</button>
 
 {{#each comments as |comment|}}
 <div id="comment-box">
-<h4>{{comment_content}}</h4>
-<h5>Created by {{name}} at {{createdAt}}</h5>
+<h4>{{comment_content}}  </h4>
+<h5>Created by {{user_name}} at {{createdAt}}</h5>
 </div>
 {{/each}}
