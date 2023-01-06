@@ -1,12 +1,15 @@
-<h1>{{title}}</h1>
+<h1>{{title}} 
 <h1>{{content}}</h1>
 <p>Created by <span class="username">{{user.name}}</span> on {{createdAt}}</p>
+ {{#if logged_in}}
 <textarea placeholder="comment" id="comment"></textarea></br>
-<button id="submit-comment">Submit</button>
+<button id="submit-comment">Submit</button> {{else}}
+               <h1>You should log in to make comments!</h1> {{/if}}
 
 {{#each comments as |comment|}}
 <div id="comment-box">
 <h4>{{comment_content}}  </h4>
-<h5>Created by {{user_name}} at {{createdAt}}</h5>
+<h5>Created by {{user}} at {{createdAt}}</h5>
 </div>
 {{/each}}
+

@@ -52,7 +52,7 @@ body{
 }
 
 .links{
-    color:darkblue;
+    color:brown;
     text-decoration: underline;
 }
 
@@ -90,4 +90,8 @@ a:visited{
     border-style: solid;
     border-color: black;
     margin: 10px 0px 10px 2px;
+}
+
+.header{
+    margin-left:20px;
 }

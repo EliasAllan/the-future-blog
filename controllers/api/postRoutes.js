@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Module , DataTypes } = require("sequelize");
 const path = require('path');
 const  {Post}  = require("../../models/")
-
+const withAuth = require("../../utils/auth");
 
 // Post newpost
 router.post("/", (req, res) => {
@@ -23,34 +23,27 @@ router.post("/", (req, res) => {
     res.status(400).json(err);
   }
   });
-// router.post("/", (req, res) => {
-// console.log("Pinged create a new post")  
-// console.log(req.body);
-//   Post.create({
-//     ...req.body,
-//     user_id: req.session.user_id
-//   })
-//     .then((newBlogpost) => {
-//       res.json(newBlogpost);
-//     })
-//     .catch((err) => {
-//       res.json(err);
-//     });
-// });
 
-// // Get posts
-// router.get('/api/posts', async (req, res) => {
-//     // console.log(req)
-//     // console.log(res)
-//     // res.render('homepage');
-
-//     try {
-//       const userData = await Post.findAll();
-//       console.log(userData)
-//       res.status(200).json(userData);
-//     } catch (err) {
-//       res.status(500).json(err);
-//     }
-//   });
+  router.delete('/:id', withAuth, async (req, res) => {
+    console.log(req.params);
+  console.log(req.session);
+    try {
+      const postData = await Post.destroy({
+        where: {
+          id: req.params.id,
+          user_id: req.session.user_id,
+        },
+      });
+  
+      if (!postData) {
+        res.status(404).json({ message: 'No post found with this id!' });
+        return;
+      }
+  
+      res.status(200).json(postData);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
 
   module.exports = router;

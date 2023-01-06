@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { Post , User, Comment} = require("../models");
+const withAuth = require("../utils/auth");
 // const withAuth = require('../utils/auth');
 
 // Get homepage
@@ -23,7 +24,6 @@ router.get("/", async (req, res) => {
     res.render("homepage", {
       logged_in: req.session.logged_in,
       blogPosts,
-      // logged_in: req.session.logged_in,
     });
   } catch (err) {
     console.log(err)
@@ -44,9 +44,34 @@ router.get("/signup", async (req, res) => {
 
 // Get Dashboard
 router.get("/dashboard", async (req, res) => {
-  res.render("dashboard",{
-    logged_in: req.session.logged_in
-  });
+  try {
+    //   // Get all projects and JOIN with user data
+    const user_id = req.session.user_id;
+      const postData = await Post.findAll({
+        where: {
+          user_id: user_id,
+        },
+        include: [
+          {
+            model: User,
+            attributes: ["name"],
+          },
+        ],
+      });
+      // console.log(postData)
+  
+      // Serialize data so the template can read it
+      const blogPosts = postData.map((post) => post.get({ plain: true }));
+      console.log(blogPosts)
+      // Pass serialized data and session flag into template
+      res.render("dashboard", {
+        logged_in: req.session.logged_in,
+        blogPosts,
+      });
+    } catch (err) {
+      console.log(err)
+      res.status(500).json(err);
+    }
 });
 
 // Get newpost
@@ -54,10 +79,10 @@ router.get("/newpost", async (req, res) => {
   res.render("newpost");
 });
 
-router.get("/posts/:singlePost", async(req,res) => {
+router.get("/posts/:singlePost", withAuth, async(req,res) => {
   console.log("Pinging single post")
-  console.log("------------------------------###########" + req.session.name)
-  const name = req.session.name
+  // console.log("------------------------------###########" + req.session.name)
+  // const name = req.session.name
   try{
   const postData = await Post.findByPk(req.params.singlePost,{
     include: [
@@ -77,8 +102,10 @@ router.get("/posts/:singlePost", async(req,res) => {
     ],
   })
   let post = postData.get({ plain: true });
+  console.log(post)
     post.comments = post.comments.map(comment => {
-      comment.user_name = comment.user.name
+      console.log(comment.user)
+      comment.user = comment.user.name || "Anonymous"
       return comment
     })
 
@@ -91,7 +118,6 @@ router.get("/posts/:singlePost", async(req,res) => {
   //   null, 2);
     
   console.log(post)
-  console.log(post.comments[0].user_id)
 
   console.log(JSON.stringify(post, null, 2));
 
@@ -99,9 +125,10 @@ router.get("/posts/:singlePost", async(req,res) => {
 
       res.render("post", {
       ...post,
-      // logged_in: req.session.logged_in,
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
+    console.log(err)
     res.status(500).json(err);
   }
 });
