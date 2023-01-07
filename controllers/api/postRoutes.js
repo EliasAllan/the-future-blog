@@ -28,6 +28,12 @@ router.post("/", (req, res) => {
     console.log(req.params);
   console.log(req.session);
     try {
+      // const commentData = await Comment.destroy({
+      //   where: {
+      //     post_id: req.params.id
+      //   },
+      // });
+      // console.log(commentData)
       const postData = await Post.destroy({
         where: {
           id: req.params.id,

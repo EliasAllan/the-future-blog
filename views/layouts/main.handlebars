@@ -15,10 +15,10 @@
                 <a href = "/" class = "navbar-items">
                     Home
                 </a>
+                {{#if logged_in}}
                 <a href = "/dashboard" class = "navbar-items">
                     Dashboard
                 </a>
-                {{#if logged_in}}
                 <a href = "" id="logout" class = "navbar-items">
                     Logout
                 </a>
