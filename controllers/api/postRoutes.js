@@ -26,30 +26,51 @@ router.post("/", (req, res) => {
 
   router.delete('/:id', withAuth, async (req, res) => {
     console.log(req.params);
-  console.log(req.session);
+    console.log(req.session);
     try {
       // const commentData = await Comment.destroy({
-      //   where: {
-      //     post_id: req.params.id
-      //   },
-      // });
-      // console.log(commentData)
-      const postData = await Post.destroy({
-        where: {
-          id: req.params.id,
-          user_id: req.session.user_id,
-        },
+        //   where: {
+          //     post_id: req.params.id
+          //   },
+          // });
+          // console.log(commentData)
+          const postData = await Post.destroy({
+            where: {
+              id: req.params.id,
+              user_id: req.session.user_id,
+            },
+          });
+          
+          if (!postData) {
+            res.status(404).json({ message: 'No post found with this id!' });
+            return;
+          }
+          
+          res.status(200).json(postData);
+        } catch (err) {
+          res.status(500).json(err);
+        }
       });
-  
-      if (!postData) {
-        res.status(404).json({ message: 'No post found with this id!' });
-        return;
-      }
-  
-      res.status(200).json(postData);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
-
-  module.exports = router;
+      
+      // router.delete("/:id", withAuth, async (req, res) => {
+      //   console.log(req.params);
+      //   console.log(req.session);
+      //     Post.destroy({
+      //       where: {
+      //         id: req.params.id,
+      //         user_id: req.session.user_id,
+      //       },
+      //     })    
+      //     .then(affectedRows => {
+      //       if (affectedRows > 0) {
+      //         res.status(200).end();
+      //       } else {
+      //         res.status(404).end();
+      //       }
+      //     })
+      //     .catch(err => {
+      //       res.status(500).json(err);
+      //     });
+      // });
+      
+      module.exports = router;
