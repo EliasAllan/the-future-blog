@@ -46,10 +46,10 @@ router.get("/signup", async (req, res) => {
 router.get("/dashboard", async (req, res) => {
   try {
     //   // Get all projects and JOIN with user data
-    const user_id = req.session.user_id;
+    console.log(req.session)
       const postData = await Post.findAll({
         where: {
-          user_id: user_id,
+          user_id: req.session.user_id,
         },
         include: [
           {

@@ -24,6 +24,9 @@ router.post("/", (req, res) => {
   }
   });
 
+
+
+  
   router.delete('/:id', withAuth, async (req, res) => {
     console.log(req.params);
     console.log(req.session);
@@ -51,6 +54,8 @@ router.post("/", (req, res) => {
           res.status(500).json(err);
         }
       });
+      
+
       
       // router.delete("/:id", withAuth, async (req, res) => {
       //   console.log(req.params);

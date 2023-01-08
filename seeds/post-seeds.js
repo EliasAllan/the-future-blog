@@ -1,4 +1,4 @@
-const  Post  = require('../models/Post');
+const  {Post}  = require('../models/');
 
 const postData = [
   {
@@ -9,7 +9,7 @@ const postData = [
   {
     title: 'happy new year',
     content:'lets have a good time',
-    user_id: 2
+    user_id: 3
   },
   {
     title: 'Group projects',
