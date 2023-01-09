@@ -81,8 +81,7 @@ router.get("/newpost", async (req, res) => {
 
 router.get("/posts/:singlePost", withAuth, async(req,res) => {
   console.log("Pinging single post")
-  // console.log("------------------------------###########" + req.session.name)
-  // const name = req.session.name
+ 
   try{
   const postData = await Post.findByPk(req.params.singlePost,{
     include: [
@@ -108,14 +107,6 @@ router.get("/posts/:singlePost", withAuth, async(req,res) => {
       comment.user = comment.user.name || "Anonymous"
       return comment
     }).reverse();
-
-  // console.log(
-  //   {
-  //     post, 
-  //     logged_in: req.session.logged_in ,
-  //     name: req.session.name
-  //   }, 
-  //   null, 2);
     
   console.log(post)
 

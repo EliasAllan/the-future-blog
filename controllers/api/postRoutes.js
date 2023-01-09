@@ -30,12 +30,7 @@ router.post("/", (req, res) => {
     console.log(req.params);
     console.log(req.session);
     try {
-      // const commentData = await Comment.destroy({
-        //   where: {
-          //     post_id: req.params.id
-          //   },
-          // });
-          // console.log(commentData)
+
           const postData = await Post.destroy({
             where: {
               id: req.params.id,
@@ -55,26 +50,5 @@ router.post("/", (req, res) => {
       });
       
 
-      
-      // router.delete("/:id", withAuth, async (req, res) => {
-      //   console.log(req.params);
-      //   console.log(req.session);
-      //     Post.destroy({
-      //       where: {
-      //         id: req.params.id,
-      //         user_id: req.session.user_id,
-      //       },
-      //     })    
-      //     .then(affectedRows => {
-      //       if (affectedRows > 0) {
-      //         res.status(200).end();
-      //       } else {
-      //         res.status(404).end();
-      //       }
-      //     })
-      //     .catch(err => {
-      //       res.status(500).json(err);
-      //     });
-      // });
       
       module.exports = router;
