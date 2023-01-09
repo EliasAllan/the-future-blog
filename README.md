@@ -60,3 +60,7 @@ E-mail me at: allanrnelias@gmail.com
 - [Tests](#tests)
 - [License](#license)
 - [Questions](#questions)
+
+## Deployed application link
+
+https://the-future-blog.herokuapp.com/
