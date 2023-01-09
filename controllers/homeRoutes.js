@@ -107,7 +107,7 @@ router.get("/posts/:singlePost", withAuth, async(req,res) => {
       console.log(comment.user)
       comment.user = comment.user.name || "Anonymous"
       return comment
-    })
+    }).reverse();
 
   // console.log(
   //   {
