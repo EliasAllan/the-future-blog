@@ -19,7 +19,8 @@ router.get("/", async (req, res) => {
 
     // Serialize data so the template can read it
     const blogPosts = postData.map((post) => post.get({ plain: true })).reverse();
-    console.log(blogPosts)
+  //  const reversedBlogPosts  = blogPosts.reverse();
+   console.log(blogPosts)
     // Pass serialized data and session flag into template
     res.render("homepage", {
       logged_in: req.session.logged_in,
@@ -61,7 +62,7 @@ router.get("/dashboard", async (req, res) => {
       // console.log(postData)
   
       // Serialize data so the template can read it
-      const blogPosts = postData.map((post) => post.get({ plain: true })).reverse();
+      const blogPosts = postData.map((post) => post.get({ plain: true }));
       console.log(blogPosts)
       // Pass serialized data and session flag into template
       res.render("dashboard", {

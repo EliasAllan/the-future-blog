@@ -16,7 +16,6 @@ router.post("/", (req, res) => {
       user_id: req.session.user_id,
       name: name,
     });
-
     res.status(200).json(newPost); 
 
   } catch (err) {
