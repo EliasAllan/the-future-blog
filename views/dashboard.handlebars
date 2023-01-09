@@ -5,8 +5,7 @@
   <div class="col-md-5">
     <h2 class="titlebox"> 
       <a href="/posts/{{post.id}}">{{post.title}}</a>
-    </h2>
-    <button class="delete-btn" data-id="{{post.id}}"> Delete this post {{post.id}} </button>
+    </h2> 
   </div>
   <h3>
     <a href="/posts/{{post.id}}">{{post.content}}</a>
@@ -14,6 +13,7 @@
   <h4>
     <p>Created by <span class="username">{{post.user.name}}</span> on {{createdAt}}</p>
   </h4>
+  <button class="delete-btn" data-id="{{post.id}}"> Delete this post </button>
 </div>
 {{/each}}
 
